@@ -1,28 +1,27 @@
-from django.shortcuts import render
+def lesson(request, letter):
 
-def home(request):
+    letters = ['ba', 'ta', 'tha']
+
+    index = letters.index(letter)
+
+    prev_letter = letters[index - 1] if index > 0 else letters[0]
+    next_letter = letters[index + 1] if index < len(letters)-1 else letters[-1]
+
     lesson = {
-        "letter": "ب",
-        "name": "بَاء",
-
-        "harakat": [
+        "letter": letter,
+        "examples": [
             {"arabic": "بَ", "english": "Ba"},
-            {"arabic": "بُ", "english": "Bu"},
-            {"arabic": "بِ", "english": "Bi"},
-            {"arabic": "بْ", "english": "Silent"},
-            {"arabic": "بَّ", "english": "Bba"},
+            {"arabic": "بُ", "english": "Boo"},
+            {"arabic": "بِ", "english": "Bee"},
         ],
-
-        "madd": [
-            {"arabic": "بَا", "english": "Baa"},
-            {"arabic": "بُو", "english": "Boo"},
-            {"arabic": "بِي", "english": "Bee"},
-        ],
-
         "words": [
-            {"arabic": "أَبٌ", "english": "Father"},
-            {"arabic": "بَابٌ", "english": "Door"},
+            {"arabic": "أَب", "english": "Father"},
+            {"arabic": "بَاب", "english": "Door"},
         ]
     }
 
-    return render(request, 'home.html', {'lesson': lesson})
+    return render(request, 'home.html', {
+        'lesson': lesson,
+        'prev_letter': prev_letter,
+        'next_letter': next_letter
+    })
