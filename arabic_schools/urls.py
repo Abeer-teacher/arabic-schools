@@ -1,86 +1,66 @@
 from django.shortcuts import render
 
+# الصفحة الرئيسية
 def index(request):
     return render(request, 'index.html')
 
 
+# نظام الدروس (ديناميك)
 def lesson(request, letter):
 
     lessons = {
 
-        "alef": {
-            "letter": "أ",
-            "harakat": [
-                {"form": "أَ", "sound": "A"},
-                {"form": "أُ", "sound": "U"},
-                {"form": "إِ", "sound": "I"},
-                {"form": "أْ", "sound": ""},
-                {"form": "أّ", "sound": ""},
-                {"form": "أٌ", "sound": ""}
-            ],
-            "madd": [
-                "أَا",
-                "أُو",
-                "إِي"
-            ],
-            "words": [
-                {"word": "أَبْ", "sound": "Ab"},
-                {"word": "أَبا", "sound": "Aba"},
-            ]
-        },
-
         "ba": {
             "letter": "ب",
             "harakat": [
-                {"form": "بَ", "sound": "Ba"},
-                {"form": "بُ", "sound": "Bu"},
-                {"form": "بِ", "sound": "Bi"},
-                {"form": "بْ", "sound": ""},
-                {"form": "بّ", "sound": ""},
-                {"form": "بٌ", "sound": ""}
+                "بَ (Ba)",
+                "بُ (Bu)",
+                "بِ (Bi)",
+                "بْ (B)",
+                "بّ (Bb)",
+                "بٌ (Bun)"
             ],
             "madd": [
-                "بَا",
-                "بُو",
-                "بِي"
+                "بَا (Baa)",
+                "بُو (Boo)",
+                "بِي (Bee)"
             ],
             "words": [
-                {"word": "بَ", "sound": "Ba"},
-                {"word": "بَا", "sound": "Baa"},
-                {"word": "أَبْ", "sound": "Ab"},
+                "بَ (Ba)",
+                "بَا (Baa)",
+                "بُو (Boo)",
+                "بِي (Bee)"
             ]
         },
 
         "ta": {
             "letter": "ت",
             "harakat": [
-                {"form": "تَ", "sound": "Ta"},
-                {"form": "تُ", "sound": "Tu"},
-                {"form": "تِ", "sound": "Ti"},
-                {"form": "تْ", "sound": ""},
-                {"form": "تّ", "sound": ""},
-                {"form": "تٌ", "sound": ""}
+                "تَ (Ta)",
+                "تُ (Tu)",
+                "تِ (Ti)",
+                "تْ (T)",
+                "تّ (Tt)",
+                "تٌ (Tun)"
             ],
             "madd": [
-                "تَا",
-                "تُو",
-                "تِي"
+                "تَا (Taa)",
+                "تُو (Too)",
+                "تِي (Tee)"
             ],
             "words": [
-                {"word": "تَ", "sound": "Ta"},
-                {"word": "تَا", "sound": "Taa"},
-                {"word": "بَتْ", "sound": "Bat"},
-                {"word": "أَتْ", "sound": "At"},
+                "تَ (Ta)",
+                "تَا (Taa)",
+                "تُو (Too)",
+                "تِي (Tee)"
             ]
-        },
+        }
 
     }
 
     lesson_data = lessons.get(letter)
 
     if not lesson_data:
-        return render(request, "home.html")
+        return render(request, 'home.html', {"error": "Lesson not found"})
 
-    return render(request, "home.html", {
-        "lesson": lesson_data
-    })
+    return render(request, 'home.html', {"lesson": lesson_data})
