@@ -1,0 +1,1 @@
+web: gunicorn arabic_schools.wsgi
