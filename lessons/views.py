@@ -1,9 +1,8 @@
 from django.shortcuts import render
 
-# قائمة الحروف
-letters = ["ا", "ب", "ت", "ث"]
-
 def lesson(request, letter):
+    letters = [chr(i) for i in range(0x0627, 0x064A + 1)]
+
     if letter not in letters:
         return render(request, 'home.html')
 
@@ -14,15 +13,8 @@ def lesson(request, letter):
 
     lesson = {
         "letter": letter,
-        "examples": [
-            {"arabic": "بَ", "english": "Ba"},
-            {"arabic": "بُ", "english": "Bu"},
-            {"arabic": "بِ", "english": "Bi"},
-        ],
-        "words": [
-            {"arabic": "باب", "english": "Door"},
-            {"arabic": "بيت", "english": "House"},
-        ]
+        "examples": [],
+        "words": []
     }
 
     return render(request, 'home.html', {
