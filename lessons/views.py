@@ -1,10 +1,8 @@
 from django.shortcuts import render
 
 def lesson(request, letter):
-    # كل الحروف العربية
     letters = [chr(i) for i in range(0x0627, 0x064A + 1)]
 
-    # لو الحرف مش موجود
     if letter not in letters:
         letter = 'ا'
 
