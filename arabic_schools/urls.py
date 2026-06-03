@@ -8,6 +8,6 @@ urlpatterns = [
     # الصفحة الرئيسية
     path('', lesson, {'letter': 'ا'}),
 
-    # صفحة الحروف
+    # باقي الحروف
     path('lesson/<str:letter>/', lesson),
 ]
