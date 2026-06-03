@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.urls import path
-from lessons import views
+from lessons.views import lesson
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # الصفحة الرئيسية
-    path('', views.lesson, {'letter': 'ا'}),
+    path('', lesson, {'letter': 'ا'}),
 
-    # كل الحروف
-    path('lesson/<str:letter>/', views.lesson),
+    # صفحة الحروف
+    path('lesson/<str:letter>/', lesson),
 ]
