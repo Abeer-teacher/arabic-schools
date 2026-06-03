@@ -1,8 +1,14 @@
 from django.shortcuts import render
 
 def lesson(request, letter):
-    letters = [chr(i) for i in range(0x0627, 0x064A + 1)]
+    # كل الحروف العربية
+    letters = [
+        'ا','ب','ت','ث','ج','ح','خ','د','ذ','ر','ز',
+        'س','ش','ص','ض','ط','ظ','ع','غ','ف','ق','ك',
+        'ل','م','ن','ه','و','ي'
+    ]
 
+    # لو الحرف مش موجود
     if letter not in letters:
         letter = 'ا'
 
@@ -13,19 +19,12 @@ def lesson(request, letter):
 
     lesson = {
         "letter": letter,
-        "examples": [
-            {"arabic": letter + "َ", "english": "a"},
-            {"arabic": letter + "ُ", "english": "u"},
-            {"arabic": letter + "ِ", "english": "i"},
-        ],
-        "words": [
-            {"arabic": letter + "ب", "english": "word"},
-            {"arabic": letter + "ت", "english": "word"},
-        ]
+        "examples": [],
+        "words": []
     }
 
     return render(request, 'home.html', {
         'lesson': lesson,
         'prev_letter': prev_letter,
-        'next_letter': next_letter,
+        'next_letter': next_letter
     })
